@@ -41,6 +41,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "1.0.1",
     "@angular/animations": "4.1.0",
     "@angular/common": "4.1.0",
     "@angular/compiler": "4.1.0",
@@ -87,7 +88,6 @@
     "zone.js": "0.8.5"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.1",
     "@angular/compiler-cli": "4.1.0",
     "@types/fullcalendar": "2.7.40",
     "@types/jasmine": "2.5.38",
