@@ -1,0 +1,112 @@
+<form [formGroup]="productOptionForm" (ngSubmit)="onSubmitForm()" novalidate>
+  <div class="widgets">
+    <ba-card>
+      <div class="row">
+        <div class="col-md-6">
+          <h2><a routerLink="/pages/productOptionsTable">Product Option</a> >
+            {{productOptionForm.controls['attributeName'].value}}</h2>
+        </div>
+        <div class="col-md-6" align="right">
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </div>
+      </div>
+    </ba-card>
+    <server-response-bar></server-response-bar>
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <ba-card title="General" baCardClass="with-scroll">
+            <div class="form-group" [ngClass]="{'has-error':!productOptionForm.controls['label'].valid}">
+              <label for="label">Label</label>
+              <input type="text" class="form-control" id="label" name="label" placeholder="Label"
+                     formControlName="label">
+            </div>
+            <div class="form-group" [ngClass]="{'has-error':!productOptionForm.controls['optionType'].valid}">
+              <label for="optionType">Type</label>
+              <input type="text" class="form-control" id="optionType" name="optionType" placeholder="Type"
+                     formControlName="optionType">
+            </div>
+          </ba-card>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <ba-card title="Details" baCardClass="with-scroll">
+            <div class="form-group" [ngClass]="{'has-error':!productOptionForm.controls['attributeName'].valid}">
+              <label for="attributeName">Attribute Name</label>
+              <input type="text" class="form-control" name="attributeName" id="attributeName"
+                     placeholder="Attribute Name" formControlName="attributeName">
+            </div>
+            <div class="form-group" [ngClass]="{'has-error':!productOptionForm.controls['displayOrder'].valid}">
+              <label for="displayOrder">Display Order</label>
+              <input type="number" class="form-control" id="displayOrder" name="displayOrder"
+                     placeholder="Display Order" formControlName="displayOrder">
+            </div>
+            <label>Use In SKU Generation</label>
+            <div class="input-demo radio-demo row">
+              <div class="col-md-4">
+                <label class="radio-inline custom-radio nowrap">
+                  <input type="radio" name="useInSkuGeneration" [value]="true"
+                         formControlName="useInSkuGeneration">
+                  <span>Yes</span>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="radio-inline custom-radio nowrap">
+                  <input type="radio" name="useInSkuGeneration" [value]="false"
+                         formControlName="useInSkuGeneration">
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div>
+          <ba-card title="Option Values" baCardClass="with-scroll">
+            <ng2-smart-table [settings]="settings" [source]="optionValueSource"
+                             (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+          </ba-card>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div>
+          <ba-card title="Validation" baCardClass="with-scroll">
+            <label>Required</label>
+            <div class="input-demo radio-demo row">
+              <div class="col-md-4">
+                <label class="radio-inline custom-radio nowrap">
+                  <input type="radio" name="required" [value]="true" formControlName="required">
+                  <span>Yes</span>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="radio-inline custom-radio nowrap">
+                  <input type="radio" name="required" [value]="false" formControlName="required">
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+            <label>Validation Strategy</label>
+
+            <div class="input-demo radio-demo row">
+              <div class="col-md-4" *ngFor="let option of validateTypes">
+                <label class=" custom-radio nowrap">
+                  <input type="radio" name="validationType" formControlName="validationType"
+                         [checked]="option==productOptionForm.controls['validationType'].value"
+                         value={{option}}>
+                  <span>{{option}}</span>
+                </label>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

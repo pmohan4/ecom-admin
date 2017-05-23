@@ -1,0 +1,420 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()" novalidate>
+
+  <div class="widgets">
+    <ba-card>
+      <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6" align="right">
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </div>
+      </div>
+    </ba-card>
+    <server-response-bar></server-response-bar>
+    <ngb-tabset>
+      <ngb-tab title="General">
+        <ng-template ngbTabContent>
+          <div class="row">
+            <div class="col-md-8">
+              <div>
+                <ba-card title="General" baCardClass="with-scroll">
+                  <div class="form-group" [ngClass]="{'has-error':!productForm.controls['name'].valid}">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                           formControlName="name">
+                  </div>
+                  <div class="form-group" [ngClass]="{'has-error':!productForm.controls['description'].valid}">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" placeholder="description" name="description"
+                              formControlName="description"></textarea>
+                  </div>
+                  <div class="form-group" formGroupName="defaultCategory">
+                    <label for="defaultCategoryName">Default Parent Category</label>
+                    <input type="text" class="form-control" id="defaultCategoryName"
+                           placeholder="Default Parent Category"
+                           formControlName="defaultCategoryName" readonly>
+                  </div>
+                  <div class="form-group" formGroupName="defaultSku">
+                    <label for="defaultSkuName">Default Sku</label>
+                    <input type="text" class="form-control" id="defaultSkuName"
+                           placeholder="Default Sku Name"
+                           formControlName="defaultSkuName">
+                  </div>
+                  <div class="form-group" [ngClass]="{'has-error':!productForm.controls['manufacture'].valid}">
+                    <label for="manufacture">Manufacturer</label>
+                    <input type="text" class="form-control" id="manufacture"
+                           placeholder="Manufacturer"
+                           formControlName="manufacture">
+                  </div>
+                  <label>Override generated url </label>
+                  <div class="input-demo radio-demo row">
+                    <div class="col-md-4">
+                      <label class="radio-inline custom-radio nowrap">
+                        <input type="radio" name="overrideGeneratedUrl" [value]="true"
+                               formControlName="overrideGeneratedUrl">
+                        <span>Yes</span>
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="radio-inline custom-radio nowrap">
+                        <input type="radio" name="overrideGeneratedUrl" [value]="false"
+                               formControlName="overrideGeneratedUrl">
+                        <span>No</span>
+                      </label>
+                    </div>
+                  </div>
+                </ba-card>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <ba-card title="Primary Image" baCardClass="with-scroll">
+                <img src="" alt="primary image"/>
+              </ba-card>
+              <div formGroupName="defaultSku">
+                <ba-card title="Financial">
+                  <label>Taxable</label>
+                  <div class="input-demo radio-demo row">
+                    <div class="col-md-4">
+                      <label class="radio-inline custom-radio nowrap">
+                        <input type="radio" name="taxableFlag" [value]="true"
+                               formControlName="taxableFlag">
+                        <span>Yes</span>
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="radio-inline custom-radio nowrap">
+                        <input type="radio" name="taxableFlag" [value]="false"
+                               formControlName="taxableFlag">
+                        <span>No</span>
+                      </label>
+                    </div>
+                  </div>
+                </ba-card>
+                <ba-card title="Active date range">
+                  <div class="form-group">
+                    <label for="activeStartDate">Start Date</label>
+                    <div id="activeStartDate" class="input-group">
+                      <input type="text" class="form-control" placeholder="dd-mm-yyyy"
+                             formControlName="activeStartDate" ngbDatepicker #d="ngbDatepicker">
+
+                      <div class="input-group-addon" (click)="d.toggle()">
+                        <span class="fa fa-calendar" aria-hidden="true"></span>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="activeEndDate">End Date</label>
+                    <div class="input-group">
+                      <input id="activeEndDate" class="form-control" placeholder="dd-mm-yyyy"
+                             formControlName="activeEndDate" ngbDatepicker #d1="ngbDatepicker">
+
+                      <div class="input-group-addon" (click)="d1.toggle()">
+                        <span class="fa fa-calendar" aria-hidden="true"></span>
+                      </div>
+                    </div>
+                  </div>
+                </ba-card>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Pricing">
+        <ng-template ngbTabContent>
+          <div class="row" formGroupName="defaultSku">
+            <div class="col-md-8">
+              <div>
+                <ba-card title="Pricing" baCardClass="with-scroll">
+                  <div class="form-group">
+                    <label for="msrPrice">MSRP(Manufacture's suggested retail price)</label>
+                    <input type="text" class="form-control" id="msrPrice" name="msrPrice" placeholder="MSRP"
+                           formControlName="msrPrice" data-tooltip-content="Manufacture's suggested retail price">
+                  </div>
+                  <div class="form-group"
+                       [ngClass]="{'has-error':!productForm.controls.defaultSku.controls['sellingPrice'].valid}">
+                    <label for="sellingPrice">Price</label>
+                    <input type="text" class="form-control" id="sellingPrice" name="sellingPrice"
+                           placeholder="Selling Price"
+                           formControlName="sellingPrice">
+                  </div>
+
+                  <div class="form-group"
+                       [ngClass]="{'has-error':!productForm.controls.defaultSku.controls['cost'].valid}">
+                    <label for="cost">Cost</label>
+                    <input type="text" class="form-control" id="cost" name="cost" placeholder="Cost"
+                           formControlName="cost">
+                  </div>
+
+                </ba-card>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <ba-card>
+                <label>Discountable</label>
+                <div class="input-demo radio-demo row">
+                  <div class="col-md-4">
+                    <label class="radio-inline custom-radio nowrap">
+                      <input type="radio" name="discountableFlag" [value]="true"
+                             formControlName="discountableFlag">
+                      <span>Yes</span>
+                    </label>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="radio-inline custom-radio nowrap">
+                      <input type="radio" name="discountableFlag" [value]="false"
+                             formControlName="discountableFlag">
+                      <span>No</span>
+                    </label>
+
+                  </div>
+                  <div class="text-warning">
+                    *If set to No, then this product is not qualified for any discount
+                  </div>
+                </div>
+              </ba-card>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Media">
+        <ng-template ngbTabContent>
+          jksbkfdj
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Options">
+        <ng-template ngbTabContent>
+          <div>
+            <ba-card title="Product Options" baCardClass="with-scroll">
+              <ng2-smart-table [settings]="settings" [source]="productOptionsSource"
+                               (create)="addNewProductOption($event)"></ng2-smart-table>
+            </ba-card>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Skus">
+        <ng-template ngbTabContent>
+          <div class="row">
+            <div class="col-md-4">
+
+              <ba-card title="Skus" baCardClass="with-scroll">
+                <ng2-smart-table [settings]="skuSettings" [source]="skuSource"
+                                 (create)="addNewSku()" (rowSelect)="editNewSku($event)"></ng2-smart-table>
+              </ba-card>
+            </div>
+
+            <div class="col-md-8" *ngIf="updatedSku">
+              <ngb-tabset>
+                <ngb-tab title="General">
+                  <ng-template ngbTabContent>
+
+                    <div>
+                      <ba-card title="General" baCardClass="with-scroll">
+
+                        <div class="form-group" [ngClass]="{'has-error':!productForm.controls['name'].valid}">
+                          <label for="name">Sku Name</label>
+                          <input [(ngModel)]="updatedSku.name" class="form-control" name="name" placeholder="Name"
+                                 [ngModelOptions]="{standalone: true}">
+                        </div>
+
+                        <div class="form-group" [ngClass]="{'has-error':!productForm.controls['description'].valid}">
+                          <label for="description">Description</label>
+                          <textarea class="form-control" id="description" placeholder="description"
+                                    [(ngModel)]="updatedSku.description"
+                                    [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                      </ba-card>
+                      <ba-card title="Primary Image" baCardClass="with-scroll">
+                        <img src="" alt="primary image"/>
+                      </ba-card>
+                      <div formGroupName="defaultSku">
+                        <ba-card title="Financial">
+                          <label>Taxable</label>
+                          <div class="input-demo radio-demo row">
+                            <div class="col-md-4">
+                              <label class="radio-inline custom-radio nowrap">
+                                <input type="radio" name="taxableFlag" [value]="true"
+                                       [(ngModel)]="updatedSku.taxableFlag"
+                                       [ngModelOptions]="{standalone: true}">
+                                <span>Yes</span>
+                              </label>
+                            </div>
+                            <div class="col-md-4">
+                              <label class="radio-inline custom-radio nowrap">
+                                <input type="radio" name="taxableFlag" [value]="false"
+                                       [(ngModel)]="updatedSku.taxableFlag"
+                                       [ngModelOptions]="{standalone: true}">
+                                <span>No</span>
+                              </label>
+                            </div>
+                          </div>
+                        </ba-card>
+                        <ba-card title="Active date range">
+                          <div class="form-group">
+                            <label for="activeStartDate">Start Date</label>
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="dd-mm-yyyy"
+                                     [(ngModel)]="updatedSku.activeStartDate" ngbDatepicker
+                                     #skuActiveStartDate="ngbDatepicker"
+                                     [ngModelOptions]="{standalone: true}">
+
+                              <div class="input-group-addon" (click)="skuActiveStartDate.toggle()">
+                                <span class="fa fa-calendar" aria-hidden="true"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="activeEndDate">End Date</label>
+                            <div class="input-group">
+                              <input class="form-control" placeholder="dd-mm-yyyy"
+                                     [(ngModel)]="updatedSku.activeEndDate" ngbDatepicker
+                                     #skuActiveEndDate="ngbDatepicker"
+                                     [ngModelOptions]="{standalone: true}">
+
+                              <div class="input-group-addon" (click)="skuActiveEndDate.toggle()">
+                                <span class="fa fa-calendar" aria-hidden="true"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </ba-card>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
+              <div align="center">
+                <button type="button" class="btn btn-danger" (click)="updateSku()">Update Sku</button>
+              </div>
+            </div>
+          </div>
+
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Inventory">
+        <ng-template ngbTabContent>
+          <div class="row" formGroupName="defaultSku">
+            <div class="col-md-12">
+              <ba-card title="Inventory" baCardClass="with-scroll">
+                <label>Inventory Type</label>
+
+                <div class="input-demo radio-demo">
+                  <div class="col-md-4" *ngFor="let inventoryType of inventoryTypes">
+                    <label class=" custom-radio nowrap">
+                      <input type="radio" name="inventoryType" formControlName="inventoryType"
+                             [checked]="inventoryType==productForm.controls.defaultSku.controls['inventoryType'].value"
+                             value={{inventoryType}}>
+                      <span>{{inventoryType}}</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-xs-3">
+                    <label for="quantityAvailable">Quantity Available</label>
+                    <input type="text" class="form-control" id="quantityAvailable" name="quantityAvailable"
+                           placeholder="Quantity Available"
+                           formControlName="quantityAvailable" width="200px">
+                  </div>
+                </div>
+              </ba-card>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Shipping">
+        <ng-template ngbTabContent>
+          <div class="row" formGroupName="defaultSku">
+            <div class="col-md-8">
+              <div>
+                <ba-card title="Dimensions" baCardClass="with-scroll">
+                  <div class="form-group">
+                    <label for="width">Width</label>
+                    <input type="number" class="form-control" id="width" name="width" placeholder="Width"
+                           formControlName="width">
+                  </div>
+                  <div class="form-group">
+                    <label for="height">Height</label>
+                    <input type="number" class="form-control" id="height" name="height"
+                           placeholder="Height"
+                           formControlName="height">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="depth">Depth</label>
+                    <input type="number" class="form-control" id="depth" name="depth" placeholder="Depth"
+                           formControlName="depth">
+                  </div>
+                  <div class="form-group">
+                    <label for="girth">Girth</label>
+                    <input type="number" class="form-control" id="girth" name="girth" placeholder="Girth"
+                           formControlName="girth">
+                  </div>
+
+
+                  <label>Dimension Unit</label>
+
+                  <div class="input-demo radio-demo">
+                    <div class="col-md-4" *ngFor="let dimensionUnit of dimensionUnits">
+                      <label class=" custom-radio nowrap">
+                        <input type="radio" name="dimensionUnitOfMeasure" formControlName="dimensionUnitOfMeasure"
+                               [checked]="dimensionUnit==productForm.controls.defaultSku.controls['dimensionUnitOfMeasure'].value"
+                               value={{dimensionUnit}}>
+                        <span>{{dimensionUnit}}</span>
+                      </label>
+                    </div>
+                  </div>
+
+                </ba-card>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <ba-card title="Fullfillment">
+                <div class="form-group">
+                  <label for="fulfillmentType">Fullfillment Type</label>
+                  <input type="text" class="form-control" id="fulfillmentType" name="fulfillmentType"
+                         placeholder="Fullfillment Type"
+                         formControlName="fulfillmentType">
+                </div>
+
+                <div class="form-group">
+                  <label for="weight">Weight</label>
+                  <input type="number" class="form-control" id="weight" name="weight" placeholder="Weight"
+                         formControlName="weight">
+                </div>
+
+                <label>Weight Unit</label>
+
+                <div class="input-demo radio-demo">
+                  <div class="col-md-4" *ngFor="let weightUnit of weightUnits">
+                    <label class=" custom-radio nowrap">
+                      <input type="radio" name="weightUnitOfMeasure" formControlName="weightUnitOfMeasure"
+                             [checked]="dimensionUnit==productForm.controls.defaultSku.controls['weightUnitOfMeasure'].value"
+                             value={{weightUnit}}>
+                      <span>{{weightUnit}}</span>
+                    </label>
+                  </div>
+                </div>
+
+              </ba-card>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Advance">
+        <ng-template ngbTabContent>
+          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro
+            synth
+            master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
+            keffiyeh
+            dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
+            salvia cillum
+            iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</form>
+
+
+

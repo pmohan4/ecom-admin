@@ -1,0 +1,57 @@
+<form [formGroup]="categoryDetailForm" (ngSubmit)="onSubmitCategoryDetail()" novalidate>
+
+  <div class="widgets">
+    <ba-card>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Category</h2>
+        </div>
+        <div class="col-md-6" align="right">
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </div>
+      </div>
+    </ba-card>
+    <server-response-bar></server-response-bar>
+    <ngb-tabset>
+      <ngb-tab title="General">
+        <ng-template ngbTabContent>
+          <categoryGeneral [categoryDetailForm]="categoryDetailForm"></categoryGeneral>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Products">
+        <ng-template ngbTabContent>
+          <categoryXProducts [categoryDetailForm]="categoryDetailForm"
+                             [categoryXProductSource]="categoryXProductSource">
+
+          </categoryXProducts>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Marketing">
+        <ng-template ngbTabContent>
+          Marketing
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Media">
+        <ng-template ngbTabContent>
+          Media
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Search">
+        <ng-template ngbTabContent>
+          Search
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="SubCategories">
+        <ng-template ngbTabContent>
+          <categoryXRef [categoryDetailForm]="categoryDetailForm"
+                        [categoryXRefSource]="categoryXRefSource">
+
+          </categoryXRef>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</form>
+
+
+

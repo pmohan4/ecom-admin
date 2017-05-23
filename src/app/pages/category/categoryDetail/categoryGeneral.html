@@ -1,0 +1,87 @@
+<div [formGroup]="categoryDetailForm">
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+        <ba-card title="General" baCardClass="with-scroll">
+          <div class="form-group" [ngClass]="{'has-error':!categoryDetailForm.controls['name'].valid}">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                   formControlName="name">
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!categoryDetailForm.controls['description'].valid}">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" placeholder="Description" name="description"
+                      formControlName="description"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Override Generated URL</label>
+            <div class="input-demo radio-demo row">
+              <div class="col-md-4">
+                <label class="radio-inline custom-radio nowrap">
+                  <input type="radio" name="overrideGeneratedUrl" [value]="true"
+                         formControlName="overrideGeneratedUrl">
+                  <span>Yes</span>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="radio-inline custom-radio nowrap">
+                  <input type="radio" name="overrideGeneratedUrl" [value]="false"
+                         formControlName="overrideGeneratedUrl">
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!categoryDetailForm.controls['parentCategory'].valid}">
+            <label for="parentCategory">Parent Category</label>
+            <input type="text" class="form-control" id="parentCategory"
+                   placeholder="Parent Category"
+                   formControlName="parentCategory">
+          </div>
+          <div class="form-group" [ngClass]="{'has-error':!categoryDetailForm.controls['url'].valid}">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" id="url"
+                   placeholder="URL"
+                   formControlName="url">
+          </div>
+        </ba-card>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+      <ba-card title="Miscellaneous">
+        <div class="form-group" [ngClass]="{'has-error':!categoryDetailForm.controls['externalId'].valid}">
+          <label for="externalId">External ID</label>
+          <input type="text" class="form-control" id="externalId"
+                 placeholder="External Id"
+                 formControlName="externalId">
+        </div>
+      </ba-card>
+
+      <ba-card title="Active date range">
+        <div class="form-group">
+          <label for="activeStartDate">Start Date</label>
+          <div id="activeStartDate" class="input-group">
+            <input type="text" class="form-control" placeholder="dd-mm-yyyy"
+                   formControlName="activeStartDate" ngbDatepicker #categoryStartDate="ngbDatepicker">
+            <div class="input-group-addon" (click)="categoryStartDate.toggle()">
+              <span class="fa fa-calendar" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="activeEndDate">End Date</label>
+          <div class="input-group">
+            <input id="activeEndDate" class="form-control" placeholder="dd-mm-yyyy"
+                   formControlName="activeEndDate" ngbDatepicker #categoryEndDate="ngbDatepicker">
+            <div class="input-group-addon" (click)="categoryEndDate.toggle()">
+              <span class="fa fa-calendar" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </ba-card>
+
+    </div>
+  </div>
+</div>
+

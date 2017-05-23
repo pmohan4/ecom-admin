@@ -1,0 +1,16 @@
+<div [formGroup]="categoryDetailForm">
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+        <ba-card title="Child Categories" baCardClass="with-scroll">
+          <ng2-smart-table [settings]="categoryXRefSettings" [source]="categoryXRefSource"
+                           (delete)="deleteCategoryXRef($event)"
+                           (create)="addCategoryXRef($event)"></ng2-smart-table>
+        </ba-card>
+      </div>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
+

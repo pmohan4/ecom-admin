@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 
 import { BaMenuService } from '../theme';
 import { PAGES_MENU } from './pages.menu';
+import 'style-loader!./common-style/smartTables.scss';
+import 'style-loader!./common-style/modalDialog.scss';
 
 @Component({
   selector: 'pages',

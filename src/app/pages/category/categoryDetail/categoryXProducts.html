@@ -1,0 +1,44 @@
+<div [formGroup]="categoryDetailForm">
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+        <ba-card title="Products" baCardClass="with-scroll">
+          <ng2-smart-table [settings]="categoryXProductSettings" [source]="categoryXProductSource"
+                           (delete)="deleteCategoryXProduct($event)"
+                           (create)="addCategoryXProduct($event)"></ng2-smart-table>
+        </ba-card>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+      <ba-card title="Product Defaults">
+        <div class="form-group" [ngClass]="{'has-error':!categoryDetailForm.controls['displayTemplate'].valid}">
+          <label for="displayTemplate">Display Template</label>
+          <input type="text" class="form-control" id="displayTemplate" name="displayTemplate"
+                 placeholder="Display Template"
+                 formControlName="displayTemplate">
+        </div>
+        <div class="form-group">
+          <label for="inventoryType">Default Inventory Type</label>
+          <div class="input-demo radio-demo">
+            <div class="col-md-4" *ngFor="let option of categoryInventoryTypes">
+              <label class="custom-radio nowrap">
+                <input type="radio" name="inventoryType" id="inventoryType" formControlName="inventoryType"
+                       [checked]="option==categoryDetailForm.controls['inventoryType'].value"
+                       value={{option}}>
+                <span>{{option}}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!categoryDetailForm.controls['fulfillmentType'].valid}">
+          <label for="fulfillmentType">Default Fulfillment Type</label>
+          <input type="text" class="form-control" id="fulfillmentType"
+                 placeholder="Default Fulfillment Type"
+                 formControlName="fulfillmentType">
+        </div>
+      </ba-card>
+    </div>
+  </div>
+</div>
+

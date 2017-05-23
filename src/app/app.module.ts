@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { routing } from './app.routing';
+import { routing,  } from './app.routing';
 
 // App is our top level component
 import { App } from './app.component';
@@ -21,7 +21,7 @@ import { PagesModule } from './pages/pages.module';
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  GlobalState
+  GlobalState, HttpModule
 ];
 
 export type StoreType = {

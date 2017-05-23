@@ -20,13 +20,30 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-      { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
-      { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
-      { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-      { path: 'ui', loadChildren: './ui/ui.module#UiModule' },
-      { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
-      { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-      { path: 'maps', loadChildren: './maps/maps.module#MapsModule' }
+      {
+        path: 'categoryList',
+        loadChildren: 'app/pages/category/categoryList.module#CategoryListModule'
+      },
+      {
+        path: 'categoryDetail',
+        loadChildren: 'app/pages/category/categoryDetail/categoryDetail.module#CategoryDetailModule'
+      },
+      {
+        path: 'products',
+        loadChildren: 'app/pages/products/products.module#ProductsModule'
+      },
+      {
+        path: 'productDetail',
+        loadChildren: 'app/pages/productDetail/productDetail.module#ProductDetailModule'
+      },
+      {
+        path: 'productOptionsTable',
+        loadChildren: 'app/pages/productOptionsTable/productOptionsTable.module#ProductOptionsTableModule'
+      },
+      {
+        path: 'productOptionDetail',
+        loadChildren: 'app/pages/productOptionDetail/productOptionDetail.module#ProductOptionDetailModule'
+      },
     ]
   }
 ];

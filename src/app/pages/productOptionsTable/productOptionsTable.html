@@ -1,0 +1,15 @@
+<div class="widgets">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ba-card title="Product Options" baCardClass="with-scroll">
+        <ng2-smart-table [settings]="settings" [source]="source"
+                         (deleteConfirm)="onDeleteConfirm($event)"
+                         (userRowSelect)="onRowSelect($event)"
+                         (edit)="editRow($event)"
+                         (create)="addNew($event)"></ng2-smart-table>
+      </ba-card>
+    </div>
+  </div>
+
+</div>

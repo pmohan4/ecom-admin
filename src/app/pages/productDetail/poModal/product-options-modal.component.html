@@ -1,0 +1,27 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">hi</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="widgets">
+
+      <div class="row">
+        <div class="col-md-12">
+          <ba-card title="Product Options" baCardClass="with-scroll">
+            <ng2-smart-table [settings]="settings" [source]="source"
+                             (userRowSelect)="onRowSelect($event)">
+
+            </ng2-smart-table>
+          </ba-card>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary confirm-btn" (click)="closeModal()">Add product option</button>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Add Products</h4>
+    <button class="close" aria-label="Close" (click)="dismissCategoryXProductModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="widgets">
+      <div class="row">
+        <div class="col-md-12">
+          <ba-card title="Products" baCardClass="with-scroll">
+            <ng2-smart-table [settings]="categoryXProductModalSettings" [source]="categoryXProductSource"
+                             (userRowSelect)="onCategoryXProductRowSelect($event)">
+
+            </ng2-smart-table>
+          </ba-card>
+          <ba-card>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div [ngClass]="{'has-error':!productCXPCtrl.valid}">
+                  <label for="productCXP">Product</label>
+                  <input type="text" class="form-control" id="productCXP" placeholder="Product"
+                         [(ngModel)]="productCXP" #productCXPCtrl="ngModel" required readonly>
+                </div>
+                <div [ngClass]="{'has-error':!displayOrderCXPCtrl.valid}">
+                  <label for="displayOrderCXP">Display Order</label>
+                  <input type="number" class="form-control" id="displayOrderCXP" placeholder="Display Order"
+                         [(ngModel)]="displayOrderCXP" #displayOrderCXPCtrl="ngModel" required>
+                </div>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger confirm-btn" [disabled]="!displayOrderCXPCtrl.valid || !productCXPCtrl.valid"
+            (click)="closeCategoryXProductModal()">Add Product
+    </button>
+  </div>
+</div>
+
+
+
