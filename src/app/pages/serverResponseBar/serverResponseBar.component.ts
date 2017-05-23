@@ -8,7 +8,7 @@ import {ServerResponseBarService} from "./serverResponseBar.service";
 })
 export class ServerResponseBar implements OnInit, OnDestroy {
 
-  constructor(private service: ServerResponseBarService) {
+  constructor(public service: ServerResponseBarService) {
   }
 
   ngOnInit(): void {
