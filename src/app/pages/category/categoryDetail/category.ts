@@ -35,7 +35,7 @@ export class Category {
 
   defaultParentCategory: Category;
 
-  allProductXref: Array<CategoryXProduct>;
+  categoryXProducts: Array<CategoryXProduct>;
 
-  allCategoryXref: Array<CategoryXRefModel>;
+  categoryXrefs: Array<CategoryXRefModel>;
 }
